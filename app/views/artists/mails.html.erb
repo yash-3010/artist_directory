@@ -1,0 +1,7 @@
+<h1>Compose your mail here</h1>
+<%= form_with model: @service, url: sendmail_artist_path, method: :get  do |form| %>
+  <div class="field">
+    <%= form.rich_text_area :content %>
+  </div>
+  <%= form.submit %>
+<% end %>

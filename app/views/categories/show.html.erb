@@ -1,0 +1,10 @@
+<section class="sec-bg rounded px-5 py-4">
+  <h1 class="display-5 mb-4"><%= @category.name %></h1>
+  <div class="d-flex justify-content-between">
+    <div>
+      <%= link_to "Edit this category", edit_category_path(@category), class:"btn btn-secondary" %>
+      <%= link_to "Back to categories", categories_path, class:"btn btn-dark" %>
+    </div>
+    <%= button_to "Destroy this category", @category, method: :delete, class:"btn btn-danger" %>
+</div>
+</section>

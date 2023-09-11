@@ -1,0 +1,75 @@
+<%= form_with(model: artist, class:"row g-3") do |form| %>
+  <% if artist.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+
+      <ul>
+        <% artist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-md-6">
+    <%= form.label :name, class:"form-label" %>
+    <%= form.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :email, class:"form-label" %>
+    <%= form.email_field :email, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :"Profile Picture", class:"form-label" %>
+    <%= form.file_field :image, class:"form-control", direct_upload: true %>
+  </div>
+  <% if artist.image.representable? %>
+        <%= image_tag rails_storage_proxy_path(artist.image), class:"profile" %>
+  <% end %>
+
+  <% artist.pictures.each do |picture| %>
+    <%= form.hidden_field :pictures, multiple: true, value: picture.signed_id %>
+  <% end  %>
+
+  <div>
+    <%= form.label :"Gallery Pictures", class:"form-label" %>
+    <%= form.file_field :pictures, multiple: true, class:"form-control", direct_upload: true %>
+  </div>
+
+  <% artist.pictures&.each do |picture| %>
+    <%= image_tag rails_storage_proxy_path(picture), class:"profile" %>
+  <% end  %>
+
+  <div>
+    <%= form.label :location, class:"form-label" %>
+    <%= form.text_field :location, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :"YouTube Links", class:"form-label" %>
+    <%= form.text_field :links, class:"form-control" %>
+  </div>
+
+  <div class="col-md-4">
+    <%= form.label :work, class:"form-label" %>
+    <%= form.text_field :work, class:"form-control" %>
+  </div>
+
+  <div class="col-md-4">
+    <%= form.label :dob, class:"form-label" %>
+    <%= form.date_field :dob, class:"form-control" %>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= form.label :category, class:"form-label d-block" %>
+      <%= form.select :category_id, options_for_select(@categories.collect { |cat| [cat.name, cat.id]}, artist.category_id), { prompt: "Select a category" }, class: "form-select" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit class:"btn btn-dark" %>
+  </div>
+<% end %>

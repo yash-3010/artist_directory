@@ -1,0 +1,26 @@
+<section class="sec-bg rounded px-5 py-4">
+  <h1 class="display-5 mb-4">Requests</h1>
+  <table class="table table-bordered border-body rounded">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col" class="text-center">Comment</th>
+        <th scope="col" class="text-center">Rating</th>
+        <th scope="col" class="text-center">User</th>
+        <th scope="col" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td class="text-center"><%= comment.body %></td>
+          <td class="text-center"><%= comment.rating %></td>
+          <td class="text-center"><%= comment.commenter %></td>
+          <td class="text-center">
+            <%= link_to "Reject", reject_comment_path(comment), data: { turbo_method: :delete }, class:"btn btn-danger py-1" %>
+            <%= link_to "Approve", accept_comment_path(comment), data: { turbo_method: :put }, class:"btn btn-success py-1" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

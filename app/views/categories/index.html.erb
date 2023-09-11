@@ -1,0 +1,11 @@
+<section class="sec-bg rounded px-5 py-4">
+  <h1 class="display-5 mb-4">Categories</h1>
+  <div id="categories" class="pri-bg p-4 gap-5 rounded row row-cols-4">
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category, class:"bg-secondary col text-center p-2 text-light my-bold remove-deco rounded-pill" %>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+    <%= link_to "New category", new_category_path, class:"btn btn-dark" %>
+  </div>
+</section>

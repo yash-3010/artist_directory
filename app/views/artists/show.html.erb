@@ -1,0 +1,17 @@
+
+<%= render @artist %>
+
+<div class="d-flex py-5 justify-content-end">
+
+  <% if current_user %>
+
+    <% if current_user.admin? %>
+    <div class="d-flex gap-3">
+      <%= link_to "Edit this artist", edit_artist_path(@artist), class:"btn btn-secondary" %>
+      <%= button_to "Destroy this artist", @artist, method: :delete, class:"btn btn-danger" %>
+    </div>
+    <% end %>
+
+  <% end %>
+
+</div>

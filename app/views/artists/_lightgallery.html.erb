@@ -1,0 +1,5 @@
+<div class="gallery-container" id="animated-thumbnails-gallery">
+    <% @artist.pictures.each do |picture| %>
+        <%= link_to image_tag(picture, class:"img-responsive"), picture, class:"gallery-item", data: { sub_html:"<h4>Photo by - #{@artist.name}</h4><p>Location - #{@artist.location} </p>"} %>
+    <% end %>
+</div>
