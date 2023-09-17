@@ -1,24 +1,59 @@
-# README
+# Artist Directory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple artist directory app that allows users to see a list of artists and their image gallery. Users can give reviews to artists and derectly contact them through the app. Users can also search for artists by name, location, and category. Admins can add, edit, and delete artists and their images. Admins can also add, edit, and delete category and locations. Autentication is done through Devise gem.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+The setups steps expect following tools installed on the system.
 
-* System dependencies
+* **Rails 7.0.7.2**
+* **Ruby 3.2.2**
 
-* Configuration
+### Check you ruby version if not same 3.2.2 then install this version using rvm
 
-* Database creation
+## Install system dependencies
 
-* Database initialization
+```bash
+bundle install
+```
 
-* How to run the test suite
+## Initialize the database
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails db:create db:migrate db:seed
+```
 
-* Deployment instructions
+## Start the Rails server
 
-* ...
+You can start the rails server using the command given below.
+
+```bash
+rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+## How to run the test suite
+
+Rspect is used for testing. You can run the tests using the command given below.
+
+```bash
+bundle exec rspec
+```
+
+## Admin login
+
+### Email: admin@user.com
+### Password: 123456
+
+## Extra gems used
+
+* devise
+* rspec-rails
+* factory_bot_rails
+* faker
+* letter_opener
+* ransack
+* rubocop
+* rubocop-rails
+* rubocop-performance
