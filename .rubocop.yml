@@ -1,0 +1,15 @@
+# .rubocop.yml
+# This file is used by RuboCop to ensure your Rails application adheres to the
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  NewCops: disable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/{rails,rake,bundle}'
+    - '**/rails_helper.rb'
+    - '**/spec_helper.rb'

@@ -6,7 +6,7 @@
     <%= form_with url: artists_path, method: :get, class:"my-auto w-25" do |form| %>
       <div class="form-group d-flex gap-1">
       <%= form.label :rating_filter, "Rating:", class:"form-lable my-auto my-bold" %>
-      <%= select_tag :rating_filter, options_for_select([["Any", 0], ["Greater than 1", 1], ["Greater than 2", 2], ["Greater than 3", 3], ["Greater than 4", 4]], params[:rating_filter].to_i), selected: 0, onchange: 'this.form.submit();', class: "form-select" %>
+      <%= select_tag :rating_filter, options_for_select([["Any", 0], ["Greater than 1", 1], ["Greater than 2", 2], ["Greater than 3", 3], ["Greater than 4", 4]], params[:rating_filter].to_i), selected: 0, onchange: 'this.form.requestSubmit();', class: "form-select" %>
       </div>
     <% end %>
     <%= search_form_for(@q, url: artists_path, method: :get, data: { turbo_permanent: true }, class:"d-flex my-auto w-50") do |f| %>

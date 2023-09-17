@@ -72,7 +72,7 @@ class ArtistsController < ApplicationController
     @artist.destroy
 
     respond_to do |format|
-      format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
+      format.html { redirect_to artists_url, alert: 'Artist was destroyed successfully.' }
       format.json { head :no_content }
     end
   end

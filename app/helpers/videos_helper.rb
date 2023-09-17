@@ -25,7 +25,9 @@ module VideosHelper
     result = %(<iframe width="#{width}"
                   height="#{height}" src="https://www.youtube.com/embed/#{youtube_id}?autoplay=1&rel=0"
                   allow='autoplay' frameborder="0" allowfullscreen></iframe>)
+    # rubocop:disable Rails/OutputSafety
     result.html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 
   # Finds Vimeo's video ID from given URL or [nil] if URL is invalid
@@ -42,7 +44,9 @@ module VideosHelper
     # see -> https://stackoverflow.com/a/4581095/1498118
     response = Net::HTTP.get(URI.parse(uri))
     json = JSON.parse response
+    # rubocop:disable Rails/OutputSafety
     json['html'].html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 
   # Main function

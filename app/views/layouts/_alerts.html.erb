@@ -1,15 +1,15 @@
 <% if notice %>
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong><%= notice %></strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="alert shadow-lg justify-content-center align-items-center text-bg-success alert-dismissible fade show w-25 fixed-bottom m-5 me-auto" role="alert">
+  <%= notice %>
+  <button type="button" class="btn-close btn-close-white text-center my-auto" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <% elsif alert %>
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong><%= alert %></strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="alert shadow-lg justify-content-center align-items-center text-bg-danger alert-dismissible fade show w-25 fixed-bottom m-5 me-auto" role="alert">
+  <%= alert %>
+  <button type="button" class="btn-close btn-close-white text-center my-auto" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <% end %>

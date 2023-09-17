@@ -7,7 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: %i[user admin]
+  enum role: { user: 0, admin: 1 }
+
+  has_many :comments, dependent: :destroy
 
   after_initialize :set_default_role, if: :new_record?
 

@@ -1,14 +1,19 @@
-<section class="card bg-secondary-subtle py-3 px-5 mx-auto rounded w-50 border border-2">
+<section class="card py-3 px-5 mx-auto rounded w-50 border border-2">
 
   <h2 class="my-3">Log in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-floating mb-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"email" %>
-      <label for="floatingInput"><%= f.label :email %></label>
+    <div class="form-floating mb-3 required">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}", placeholder:"email" %>
+      <%= f.label :email, class:"form-label" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:email).empty? %>
+          * <%= resource.errors.where(:email).last.full_message %>
+        <% end %>
+      </div>
     </div>
-    <div class="form-floating mb-3">
+    <div class="form-floating mb-3 required">
       <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"password" %>
-      <label for="floatingInput"><%= f.label :password %></label>
+      <%= f.label :password, class:"form-label" %>
     </div>
 
     <% if devise_mapping.rememberable? %>

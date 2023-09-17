@@ -1,46 +1,57 @@
 <%= form_with(model: artist, class:"row g-3") do |form| %>
-  <% if artist.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
 
-      <ul>
-        <% artist.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="col-md-6">
+  <div class="col-md-6 required">
     <%= form.label :name, class:"form-label" %>
-    <%= form.text_field :name, class:"form-control" %>
+    <%= form.text_field :name, class:"form-control #{ !artist.errors.where(:name).empty? && "border border-danger"}" %>
+    <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:name).empty? %>
+        * <%= artist.errors.where(:name).last.full_message %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 required">
     <%= form.label :email, class:"form-label" %>
-    <%= form.email_field :email, class:"form-control" %>
+    <%= form.email_field :email, class:"form-control #{ !artist.errors.where(:email).empty? && "border border-danger"}" %>
+    <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:email).empty? %>
+        * <%= artist.errors.where(:email).last.full_message %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
+  <div class="required">
     <%= form.label :"Profile Picture", class:"form-label" %>
-    <%= form.file_field :image, class:"form-control", direct_upload: true %>
+    <%= form.file_field :image, class:"form-control #{ !artist.errors.where(:image).empty? && "border border-danger"}", direct_upload: true %>
+    <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:image).empty? %>
+        * <%= artist.errors.where(:image).last.full_message %>
+      <% end %>
+    </div>
   </div>
-  <% if artist.image.representable? %>
+  <% if artist.id? %>
         <%= image_tag rails_storage_proxy_path(artist.image), class:"profile" %>
   <% end %>
 
-  <% artist.pictures.each do |picture| %>
-    <%= form.hidden_field :pictures, multiple: true, value: picture.signed_id %>
-  <% end  %>
-
-  <div>
+  <% if artist.id? %>
+    <% artist.pictures.each do |picture| %>
+      <%= form.hidden_field :pictures, multiple: true, value: picture.signed_id %>
+    <% end  %>
+  <% end %>
+  <div class="required">
     <%= form.label :"Gallery Pictures", class:"form-label" %>
-    <%= form.file_field :pictures, multiple: true, class:"form-control", direct_upload: true %>
+    <%= form.file_field :pictures, multiple: true, class:"form-control #{ !artist.errors.where(:pictures).empty? && "border border-danger"}" %>
+    <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:pictures).empty? %>
+        * <%= artist.errors.where(:pictures).last.full_message %>
+      <% end %>
+    </div>
   </div>
-
-  <% artist.pictures&.each do |picture| %>
-    <%= image_tag rails_storage_proxy_path(picture), class:"profile" %>
-  <% end  %>
+  <% if artist.id? %>
+    <% artist.pictures.each do |picture| %>
+      <%= image_tag rails_storage_proxy_path(picture), class:"profile" %>
+    <% end %>
+  <% end %>
 
   <div>
     <%= form.label :location, class:"form-label" %>
@@ -63,9 +74,14 @@
   </div>
 
   <div class="col-md-4">
-    <div class="form-group">
+    <div class="form-group required">
       <%= form.label :category, class:"form-label d-block" %>
-      <%= form.select :category_id, options_for_select(@categories.collect { |cat| [cat.name, cat.id]}, artist.category_id), { prompt: "Select a category" }, class: "form-select" %>
+      <%= form.select :category_id, options_for_select(@categories.collect { |cat| [cat.name, cat.id]}, artist.category_id), { prompt: "Select a category" }, class: "form-select #{ !artist.errors.where(:category_id).empty? && "border border-danger"}" %>
+      <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:category_id).empty? %>
+        * <%= artist.errors.where(:category_id).last.full_message %>
+      <% end %>
+    </div>
     </div>
   </div>
 

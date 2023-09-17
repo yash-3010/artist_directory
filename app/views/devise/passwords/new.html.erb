@@ -5,8 +5,13 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="form-floating mb-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control" , placeholder:"email"%>
-      <label for="floatingInput"><%= f.label :email %></label>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:email).empty? %>
+          * <%= resource.errors.where(:email).last.full_message %>
+        <% end %>
+      </div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email"%>
+      <%= f.label :email, class:"form-label" %>
     </div>
 
     <div class="actions">
