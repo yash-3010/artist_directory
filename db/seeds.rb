@@ -10,7 +10,7 @@
 
 Category.destroy_all
 
-@user = User.new(email: 'admin@user.com', password: '123456', password_confirmation: '123456', role: 1)
+@user = User.new(email: 'admin@user.com', password: 'Admin@123', password_confirmation: 'Admin@123', role: 1)
 @user.save!
 
 @category = Category.create([

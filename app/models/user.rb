@@ -9,6 +9,12 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
+  # Strong password validation format
+  validates :password,
+            format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}\z/,
+                      message: 'must contain at least one uppercase letter, one lowercase
+                       letter, one number, and one special character' }
+
   has_many :comments, dependent: :destroy
 
   after_initialize :set_default_role, if: :new_record?

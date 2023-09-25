@@ -44,7 +44,7 @@ bundle exec rspec
 ## Admin login
 
 ### Email: admin@user.com
-### Password: 123456
+### Password: Admin@123
 
 ## Extra gems used
 

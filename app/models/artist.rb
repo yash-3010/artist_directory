@@ -5,8 +5,7 @@ class Artist < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :category_id, presence: true
   validates :name, presence: true
-  validates :email, presence: true
-  validates :image, presence: true
+  validates :email, presence: true, uniqueness: true
   belongs_to :category
   has_one_attached :image
   has_many_attached :pictures
@@ -26,9 +25,8 @@ class Artist < ApplicationRecord
   def image_type
     errors.add(:image, 'is missing!') if image.attached? == false
     return unless image.attached? == true
-    return if image.content_type.in?(%w[image/jpeg image/png])
 
-    errors.add(:image, 'needs to be a JPEG or PNG')
+    errors.add(:image, 'needs to be a JPEG or PNG') unless image.content_type.in?(%w[image/jpeg image/png])
   end
 
   def pictures_type

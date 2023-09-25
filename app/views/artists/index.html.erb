@@ -9,9 +9,9 @@
       <%= select_tag :rating_filter, options_for_select([["Any", 0], ["Greater than 1", 1], ["Greater than 2", 2], ["Greater than 3", 3], ["Greater than 4", 4]], params[:rating_filter].to_i), selected: 0, onchange: 'this.form.requestSubmit();', class: "form-select" %>
       </div>
     <% end %>
-    <%= search_form_for(@q, url: artists_path, method: :get, data: { turbo_permanent: true }, class:"d-flex my-auto w-50") do |f| %>
+    <%= search_form_for(@q, url: artists_path, method: :get, class:"d-flex my-auto w-50") do |f| %>
 
-      <%= f.search_field :name_or_location_or_category_name_or_comments_rating_cont_any, class:"form-control w-100 me-2", placeholder:"Search for artist name, category, location etc." %>
+      <%= f.search_field :name_or_category_name_cont_any, class:"form-control w-100 me-2", placeholder:"Search for artist name and category" %>
 
       <%= f.submit class:"btn btn-outline-warning my-bold bg-warning text-dark"%>
     <% end %>

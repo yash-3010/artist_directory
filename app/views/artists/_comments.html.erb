@@ -27,11 +27,29 @@
                 <% if current_user %>
                     <% if current_user.admin? %>
                     <p class="my-auto">
-                        <%= link_to "Delete", [comment.artist, comment], data: {
-                                    turbo_method: :delete,
-                                    turbo_confirm: "Are you sure?"
-                                    }, class:"px-3 py-1 bg-dark text-light rounded my-bold remove-deco" %>
+                        <button type="button" class="px-3 py-1 bg-dark text-light rounded my-bold remove-deco" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
                     </p>
+                    <div class="modal fade" id="exampleModal" data-bs-config='{"backdrop":false}' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog shadow">
+                        <div class="modal-content bg-danger-subtle bg-gradient">
+                            <div class="modal-header border-secondary">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body fw-semibold">
+                            Are you sure you want to delete this comment?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary py-1" data-bs-dismiss="modal">Close</button>
+                                <%= link_to "Delete", [comment.artist, comment], data: {
+                                        turbo_method: :delete,
+                                        }, class:"px-3 py-1 bg-dark text-light rounded my-bold remove-deco" %>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     <% end %>
                 <% end %>
             </div>
@@ -47,6 +65,13 @@
             <h4 class="display-6 fs-4 my-bold">Rating:</h3>
             <p class="my-auto lead fs-6">Use slider to give Rating in range 1-5</p>
             <%= form.range_field :rating, in: 1.0..5.0, class:"form-range text-dark" %>
+            <div class="d-flex justify-content-between">
+                <p class="fw-semibold fs-6">1</p>
+                <p class="fw-semibold fs-6">2</p>
+                <p class="fw-semibold fs-6">3</p>
+                <p class="fw-semibold fs-6">4</p>
+                <p class="fw-semibold fs-6">5</p>
+            </div>
             <p>
                 <%= form.submit class:"px-3 py-1 bg-dark text-light rounded my-bold remove-deco" %>
             </p>

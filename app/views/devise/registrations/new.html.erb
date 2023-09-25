@@ -14,16 +14,13 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email"%>
       <%= f.label :email, class:"form-label" %>
     </div>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %>
     <div class="form-floating mb-3 required">
       <div class="text-danger fst-italic">
         <% if !resource.errors.where(:password).empty? %>
           * <%= resource.errors.where(:password).last.full_message %>
         <% end %>
       </div>
-      <%= f.password_field :password, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password).empty? && "border border-danger"}", placeholder:"password"%>
+      <%= f.password_field :password, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password).empty? && "border border-danger"}", placeholder:"Enter your password"%>
       <%= f.label :password, class:"form-label" %>
     </div>
 
@@ -33,7 +30,7 @@
           * <%= resource.errors.where(:password_confirmation).last.full_message %>
         <% end %>
       </div>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password_confirmation).empty? && "border border-danger"}" , placeholder:"password confirmation"%>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password_confirmation).empty? && "border border-danger"}" , placeholder:"Re-enter your password"%>
       <%= f.label :password_confirmation, class:"form-label" %>
     </div>
 

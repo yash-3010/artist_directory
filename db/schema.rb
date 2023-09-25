@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_193927) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_193320) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -50,32 +50,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_193927) do
   end
 
   create_table "artists", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.date "dob"
     t.string "location"
     t.string "work"
-    t.string "email"
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false
     t.string "links"
     t.index ["category_id"], name: "index_artists_on_category_id"
+    t.index ["email"], name: "index_artists_on_email", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "body"
+    t.string "body", null: false
     t.integer "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "rating"
-    t.boolean "approval"
+    t.integer "rating", null: false
+    t.boolean "approval", default: false
     t.integer "user_id", null: false
     t.index ["artist_id"], name: "index_comments_on_artist_id"
     t.index ["user_id"], name: "index_comments_on_user_id"

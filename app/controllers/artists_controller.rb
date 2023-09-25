@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show edit update destroy]
   before_action :set_categories
   before_action :require_admin, except: %i[show index sendmail mails]
-  before_action :authenticate_user!, only: %i[sendmail mails]
+  before_action :authenticate_user!, only: %i[sendmail mails show]
 
   # GET /artists or /artists.json
   def index
@@ -19,13 +19,13 @@ class ArtistsController < ApplicationController
                end
   end
 
-  def search
-    @rating_filter = params[:rating_filter].to_i
-    @artists = @q.result(distinct: true).order(:name).joins(:comments).group('artists.id').having(
-      'AVG(CASE WHEN comments.approval = TRUE THEN comments.rating ELSE NULL END) > ?', @rating_filter
-    )
-    render turbo_stream: turbo_stream.replace('results', partial: 'artists/results')
-  end
+  # def search
+  #   @rating_filter = params[:rating_filter].to_i
+  #   @artists = @q.result(distinct: true).order(:name).joins(:comments).group('artists.id').having(
+  #     'AVG(CASE WHEN comments.approval = TRUE THEN comments.rating ELSE NULL END) > ?', @rating_filter
+  #   )
+  #   render turbo_stream: turbo_stream.replace('results', partial: 'artists/results')
+  # end
 
   # GET /artists/1 or /artists/1.json
   def show

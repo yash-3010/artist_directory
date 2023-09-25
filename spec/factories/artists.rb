@@ -11,12 +11,12 @@ FactoryBot.define do
     category { FactoryBot.create(:category) }
 
     after(:build) do |artist|
-      artist.image.attach(io: File.open(Rails.root.join('spec/assets/images/a1.jpg')), filename: 'a1.jpg',
-                          content_type: 'image/jpg')
+      artist.image.attach(io: File.open(Rails.root.join('spec/fixtures/files/a1.jpg')), filename: 'a1.jpg',
+                          content_type: 'image/jpeg')
     end
     after(:build) do |artist|
       artist.pictures.attach(io: File.open('spec/assets/images/p1.jpg'), filename: 'p1.jpg',
-                             content_type: 'image/jpg')
+                             content_type: 'image/jpeg')
     end
   end
 end

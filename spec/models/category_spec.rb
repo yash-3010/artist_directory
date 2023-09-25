@@ -28,3 +28,18 @@ RSpec.describe Category, type: :model do
     expect(FactoryBot.build(:category)).to be_valid
   end
 end
+
+RSpec.describe Category, type: :model do
+  context 'should not be valid when' do
+    it 'name is nil' do
+      expect(FactoryBot.build(:category, name: nil)).to_not be_valid
+    end
+    it 'name is empty' do
+      expect(FactoryBot.build(:category, name: '')).to_not be_valid
+    end
+    it 'name is not unique' do
+      FactoryBot.create(:category, name: 'Painting')
+      expect(FactoryBot.build(:category, name: 'Painting')).to_not be_valid
+    end
+  end
+end

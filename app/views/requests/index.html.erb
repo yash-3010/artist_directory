@@ -16,10 +16,29 @@
           <td class="text-center"><%= comment.rating %></td>
           <td class="text-center"><%= comment.user.email %></td>
           <td class="text-center">
-            <%= link_to "Reject", reject_comment_path(comment), data: { turbo_method: :delete }, class:"btn btn-danger py-1" %>
+            <button type="button" class="btn btn-danger py-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Reject
+            </button>
             <%= link_to "Approve", accept_comment_path(comment), data: { turbo_method: :put }, class:"btn btn-success py-1" %>
           </td>
         </tr>
+        <div class="modal fade" id="exampleModal" data-bs-config='{"backdrop":false}' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog shadow">
+            <div class="modal-content bg-danger-subtle bg-gradient">
+              <div class="modal-header border-secondary">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body fw-semibold">
+                Are you sure you want to Reject this review?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary py-1" data-bs-dismiss="modal">Close</button>
+                <%= link_to "Confirm Reject", reject_comment_path(comment), data: { turbo_method: :delete }, class:"btn btn-danger py-1" %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </tbody>
   </table>
