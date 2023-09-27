@@ -3,6 +3,6 @@
 # Changed dob from string to date
 class ChangeDobFromArtist < ActiveRecord::Migration[7.0]
   def change
-    change_column :artists, :dob, :date
+    change_column :artists, :dob, 'date USING dob::date'
   end
 end
