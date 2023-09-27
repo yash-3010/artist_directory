@@ -9,7 +9,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Category.destroy_all
-Artist.destroy_all
 User.destroy_all
 
 
