@@ -9,6 +9,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Category.destroy_all
+Artist.destroy_all
+User.destroy_all
+
 
 @user = User.new(email: 'admin@user.com', password: 'Admin@123', password_confirmation: 'Admin@123', role: 1)
 @user.save!
