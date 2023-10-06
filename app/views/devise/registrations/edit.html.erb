@@ -1,43 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="sec-bg rounded px-5 py-4">
+  <h2 class="display-5 mb-4">Profile</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field required">
+      <%= f.label :email, class:"form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control w-75 #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:email).empty? %>
+          * <%= resource.errors.where(:email).last.full_message %>
+        <% end %>
+      </div>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
+
+    <p class="fw-semibold fst-italic mb-0 mt-4 mb-1 text-primary">* leave password blank if you don't want to change it</p>
+    <div class="row">
+    <div class="col-6">
+      <%= f.label :password, class:"form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password).empty? && "border border-danger"}", placeholder:"new password" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:password).empty? %>
+          * <%= resource.errors.where(:password).last.full_message %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <%= f.label :password_confirmation, class:"form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control #{ !resource.errors.where(:password_confirmation).empty? && "border border-danger"}", placeholder:"confirm password" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:password_confirmation).empty? %>
+          * <%= resource.errors.where(:password_confirmation).last.full_message %>
+        <% end %>
+      </div>
+    </div>
+    </div>
+
+    <p class="fw-semibold fst-italic mb-0 mt-4 mb-1 text-primary">* We need your current password to confirm your changes</p>
+    <div class="field required">
+      <%= f.label :current_password, class:"form-label" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control w-50 #{ !resource.errors.where(:current_password).empty? && "border border-danger"}", placeholder:"current password" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:current_password).empty? %>
+          * <%= resource.errors.where(:current_password).last.full_message %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class:"btn btn-dark my-4" %>
+    </div>
+  <% end %>
+</section>
+<section class="sec-bg rounded px-5 py-4 mt-3">
+
+  <h3>Cancel my account</h3>
+  <p class="text-danger fw-semibold fst-italic">
+    * Canceling your account will permanently delete all your data.
+  </p>
+  <div>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Cancel my account
+    </button>
+    <div class="modal fade" id="exampleModal" data-bs-config='{"backdrop":false}' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog shadow">
+        <div class="modal-content bg-danger-subtle bg-gradient">
+          <div class="modal-header border-secondary">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body fw-semibold">
+            Are you sure you want to delete your account?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary py-1" data-bs-dismiss="modal">Close</button>
+            <%= button_to "Confirm Delete", registration_path(resource_name), method: :delete, class:"btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</section>

@@ -8,7 +8,6 @@ class ArtistMailer < ApplicationMailer
   #   en.artist_mailer.mail_artist.subject
   #
   def mail_artist
-    @greeting = 'Hi'
     @reciver = params[:reciver]
     @sender = params[:sender]
     @body = params[:body]

@@ -4,6 +4,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, except: [:create]
+  before_action :restrict_admin, only: [:create]
   def create
     @artist = Artist.find(params[:artist_id])
     @comment = @artist.comments.new(comment_params)
@@ -40,5 +41,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :rating)
+  end
+
+  def restrict_admin
+    @artist = Artist.find(params[:artist_id])
+    return unless current_user.admin?
+
+    redirect_to artist_path(@artist), status: :unprocessable_entity,
+                                      alert: 'You are not allowed to perform this action.'
   end
 end
