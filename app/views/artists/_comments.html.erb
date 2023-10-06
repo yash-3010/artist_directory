@@ -64,15 +64,15 @@
             </p>
             <h4 class="display-6 fs-4 my-bold">Rating:</h3>
             <p class="my-auto lead fs-6">Use slider to give Rating in range 1-5</p>
-            <%= form.range_field :rating, in: 1.0..5.0, class:"form-range text-dark" %>
-            <div class="d-flex justify-content-between">
+            <%= form.range_field :rating, in: 1.0..5.0, class:"form-range text-dark w-50 mt-2" %>
+            <div class="d-flex justify-content-between w-50">
                 <p class="fw-semibold fs-6">1</p>
                 <p class="fw-semibold fs-6">2</p>
                 <p class="fw-semibold fs-6">3</p>
                 <p class="fw-semibold fs-6">4</p>
                 <p class="fw-semibold fs-6">5</p>
             </div>
-            <p>
+            <p class="my-3">
                 <%= form.submit class:"px-3 py-1 bg-dark text-light rounded my-bold remove-deco" %>
             </p>
         <% end %>

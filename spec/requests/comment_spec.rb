@@ -56,4 +56,12 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
       expect(response.status).to eq(302)
     end
   end
+
+  context 'when user logged in as admin' do
+    it 'should not create comment' do
+      sign_in @admin_user
+      post artist_comments_path(@artist), params: { comment: { body: 'This is a comment', rating: 5 } }
+      expect(response.status).to eq(422)
+    end
+  end
 end

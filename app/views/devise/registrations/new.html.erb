@@ -11,7 +11,7 @@
           * <%= resource.errors.where(:email).last.full_message %>
         <% end %>
       </div>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email"%>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
       <%= f.label :email, class:"form-label" %>
     </div>
     <div class="form-floating mb-3 required">
