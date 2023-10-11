@@ -28,13 +28,13 @@ class CommentsController < ApplicationController
   def accept
     @comment = Comment.find(params[:id])
     @comment.update(approval: true)
-    redirect_to artists_path, notice: 'Review Approved.'
+    redirect_to requests_path, notice: 'Review Approved.'
   end
 
   def reject
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to artists_path, alert: 'Review Rejected'
+    redirect_to requests_path, alert: 'Review Rejected'
   end
 
   private

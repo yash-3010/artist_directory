@@ -10,13 +10,33 @@ class ArtistsController < ApplicationController
   # GET /artists or /artists.json
   def index
     @rating_filter = params[:rating_filter].to_i
-    @artists = if @rating_filter.zero?
-                 @q.result(distinct: true).order(:name)
-               else
-                 @q.result(distinct: true).order(:name).joins(:comments).group('artists.id').having(
-                   'AVG(CASE WHEN comments.approval = TRUE THEN comments.rating ELSE NULL END) > ?', @rating_filter
-                 )
-               end
+    @rating_sort = params[:rating_sort].to_i # rating_sort 0 means no sort, 1 means ascending, 2 means descending
+
+    @artists = @q.result(distinct: true).joins(:comments).group('artists.id')
+    @artists = @artists.select do |artist|
+      avg_rating = artist.comments.where(approval: true).average(:rating)
+      avg_rating && avg_rating > @rating_filter
+    end
+
+    @artists.sort! do |a, b|
+      avg_rating_a = a.comments.where(approval: true).average(:rating)
+      avg_rating_b = b.comments.where(approval: true).average(:rating)
+
+      if @rating_sort == 1
+        avg_rating_a <=> avg_rating_b
+      else
+        avg_rating_b <=> avg_rating_a
+      end
+    end
+
+    # then sort by name if rating_sort is 0
+    if(@rating_sort.zero? && !@rating_filter.zero?)
+      @artists = @artists.sort_by(&:name)
+    end
+
+    if @rating_sort.zero? && @rating_filter.zero?
+      @artists = @q.result(distinct: true).order(:name)
+    end
   end
 
   # def search
@@ -35,10 +55,12 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
+    @artist.links.build
   end
 
   # GET /artists/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /artists or /artists.json
   def create
@@ -100,8 +122,8 @@ class ArtistsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def artist_params
-    params.require(:artist).permit(:name, :dob, :location, :work, :email, :category_id, :links, :content, :image,
-                                   pictures: [])
+    params.require(:artist).permit(:name, :dob, :location, :work, :email, :category_id, :content, :image,
+                                   pictures: [], links_attributes: [:id, :url, :_destroy])
   end
 
   def set_categories

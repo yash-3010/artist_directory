@@ -3,14 +3,18 @@
 # This is artist model
 class Artist < ApplicationRecord
   has_many :comments, dependent: :destroy
+  has_many :links, dependent: :destroy, inverse_of: :artist
+  accepts_nested_attributes_for :links, allow_destroy: true, reject_if: :all_blank
   validates :category_id, presence: true
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+  validates :links, presence: true
   belongs_to :category
   has_one_attached :image
   has_many_attached :pictures
   validate :image_type
   validate :pictures_type
+  validate :validate_youtube_urls
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[category_id created_at dob email id links location name updated_at work]
@@ -37,4 +41,20 @@ class Artist < ApplicationRecord
       errors.add(:pictures, 'needs to be a JPEG or PNG') unless picture.content_type.in?(%w[image/jpeg image/png])
     end
   end
+
+  def validate_youtube_urls
+    return if links.blank?
+
+    links.each do |url|
+      unless valid_youtube_url?(url.url)
+        errors.add(:links, "#{url.url} is not a valid YouTube video URL")
+      end
+    end
+  end
+
+  def valid_youtube_url?(url)
+    youtube_url_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)\z/
+    !!url.match(youtube_url_regex)
+  end
+
 end

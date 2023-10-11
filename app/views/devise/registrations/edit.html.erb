@@ -18,29 +18,6 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <p class="fw-semibold fst-italic mb-0 mt-4 mb-1 text-primary">* leave password blank if you don't want to change it</p>
-    <div class="row">
-    <div class="col-6">
-      <%= f.label :password, class:"form-label" %>
-      <%= f.password_field :password, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password).empty? && "border border-danger"}", placeholder:"new password" %>
-      <div class="text-danger fst-italic">
-        <% if !resource.errors.where(:password).empty? %>
-          * <%= resource.errors.where(:password).last.full_message %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-6">
-      <%= f.label :password_confirmation, class:"form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control #{ !resource.errors.where(:password_confirmation).empty? && "border border-danger"}", placeholder:"confirm password" %>
-      <div class="text-danger fst-italic">
-        <% if !resource.errors.where(:password_confirmation).empty? %>
-          * <%= resource.errors.where(:password_confirmation).last.full_message %>
-        <% end %>
-      </div>
-    </div>
-    </div>
-
     <p class="fw-semibold fst-italic mb-0 mt-4 mb-1 text-primary">* We need your current password to confirm your changes</p>
     <div class="field required">
       <%= f.label :current_password, class:"form-label" %>
@@ -52,6 +29,29 @@
       </div>
     </div>
 
+    <p class="fw-semibold fst-italic mb-0 mt-4 mb-1 text-primary">* leave password blank if you don't want to change it</p>
+    <div class="row">
+    <div class="col-6">
+      <%= f.label :"New password", class:"form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password" , class:"form-control #{ !resource.errors.where(:password).empty? && "border border-danger"}", placeholder:"new password" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:password).empty? %>
+          * <%= resource.errors.where(:password).last.full_message %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <%= f.label :password_confirmation, class:"form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control #{ !resource.errors.where(:password_confirmation).empty? && "border border-danger"}", placeholder:"confirm password" %>
+      <div class="text-danger fst-italic text-capitalize">
+        <% if !resource.errors.where(:password_confirmation).empty? %>
+          * <%= resource.errors.where(:password_confirmation).last.message %>
+        <% end %>
+      </div>
+    </div>
+    </div>
+
     <div class="actions">
       <%= f.submit "Update", class:"btn btn-dark my-4" %>
     </div>
@@ -59,13 +59,13 @@
 </section>
 <section class="sec-bg rounded px-5 py-4 mt-3">
 
-  <h3>Cancel my account</h3>
+  <h3>Delete my account</h3>
   <p class="text-danger fw-semibold fst-italic">
-    * Canceling your account will permanently delete all your data.
+    * Deleting your account will permanently delete all your data.
   </p>
   <div>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Cancel my account
+      Delete my account
     </button>
     <div class="modal fade" id="exampleModal" data-bs-config='{"backdrop":false}' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog shadow">

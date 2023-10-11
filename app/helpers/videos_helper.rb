@@ -23,8 +23,8 @@ module VideosHelper
     youtube_id = find_youtube_id url
 
     result = %(<iframe width="#{width}"
-                  height="#{height}" src="https://www.youtube.com/embed/#{youtube_id}?autoplay=1&rel=0"
-                  allow='autoplay' frameborder="0" allowfullscreen></iframe>)
+                  height="#{height}" src="https://www.youtube.com/embed/#{youtube_id}?rel=0"
+                  frameborder="0" allowfullscreen></iframe>)
     # rubocop:disable Rails/OutputSafety
     result.html_safe
     # rubocop:enable Rails/OutputSafety

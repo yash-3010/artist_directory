@@ -1,4 +1,7 @@
-<%= form_with(model: artist, class:"row g-3") do |form| %>
+<%= form_with(model: artist, data: {
+  controller: 'nested-form',
+  nested_form_wrapper_selector_value: '.nested-form-wrapper'
+} , class:"row g-3") do |form| %>
 
   <div class="col-md-6 required">
     <%= form.label :name, class:"form-label" %>
@@ -58,9 +61,41 @@
     <%= form.text_field :location, class:"form-control" %>
   </div>
 
-  <div>
+  <% if false %>
+  <div class="required">
     <%= form.label :"YouTube Links", class:"form-label" %>
-    <%= form.text_field :links, class:"form-control" %>
+    <%= form.text_field :links, class:"form-control #{ !artist.errors.where(:links).empty? && "border border-danger"}" %>
+    <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:links).empty? %>
+        * <%= artist.errors.where(:links).last.full_message %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="px-5 py-4 mt-5 mb-4 rounded-3" style="border-style: dashed; border-color: #D3D3D3;">
+  <p class="form-label ">YouTube Links <span class="text-danger">*</span> </p>
+  <div class="text-danger fst-italic">
+      <% if !artist.errors.where(:links).empty? %>
+        * <%= artist.errors.where(:links).first.message %>
+      <% end %>
+  </div>
+
+  <template data-nested-form-target="template">
+    <%= form.fields_for :links, Link.new, child_index: 'NEW_RECORD' do |link| %>
+      <%= render "artists/link_fields", f: link %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :links do |link| %>
+    <%= render "artists/link_fields", f: link %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
+  <div class="text-start mt-3">
+  <button type="button" data-action="nested-form#add" class="btn btn-primary">Add Link</button>
+  </div>
   </div>
 
   <div class="col-md-4">
