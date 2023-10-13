@@ -5,14 +5,25 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field required">
+      <%= f.label :username, class:"form-label" %>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username" , class:"form-control w-75 #{ !resource.errors.where(:username).empty? && "border border-danger"}" , placeholder:"Your name" %>
+      <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:username).empty? %>
+          * <%= resource.errors.where(:username).last.full_message %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="field required">
       <%= f.label :email, class:"form-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control w-75 #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
+      <%= f.email_field :email, autocomplete: "email" , class:"form-control w-75 #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
       <div class="text-danger fst-italic">
         <% if !resource.errors.where(:email).empty? %>
           * <%= resource.errors.where(:email).last.full_message %>
         <% end %>
       </div>
     </div>
+
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

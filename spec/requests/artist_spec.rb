@@ -6,8 +6,8 @@ require 'rails_helper'
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'PUT /artists' do
@@ -30,8 +30,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'check index' do
@@ -54,8 +54,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'check index' do
@@ -76,8 +76,40 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
+  end
+
+  it 'sorts artists by average rating in ascending order when rating_sort is 1' do
+    artist1 = create(:artist)
+    artist2 = create(:artist)
+    create(:comment, artist: artist1, rating: 3, approval: true)
+    create(:comment, artist: artist2, rating: 4, approval: true)
+    get '/artists', params: { rating_sort: '1' }
+
+    expect(response).to have_http_status(200)
+    expect(response.body).to include(artist1.name)
+    expect(response.body).to include(artist2.name)
+  end
+
+  it 'sorts artists by average rating in descending order when rating_sort is not 1' do
+    artist1 = create(:artist)
+    artist2 = create(:artist)
+    create(:comment, artist: artist1, rating: 3, approval: true)
+    create(:comment, artist: artist2, rating: 4, approval: true)
+    get '/artists', params: { rating_sort: '2' }
+
+    expect(response).to have_http_status(200)
+    expect(response.body).to include(artist2.name)
+    expect(response.body).to include(artist1.name)
+  end
+end
+
+RSpec.describe 'Artists', type: :request do
+  before do
+    @artist = FactoryBot.create(:artist)
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'GET /artists' do
@@ -100,8 +132,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'GET /artists' do
@@ -124,8 +156,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'POST /artists' do
@@ -152,8 +184,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'normal user should not be able to access' do
@@ -180,8 +212,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'DELETE /artists' do
@@ -197,8 +229,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'mail artist' do
@@ -221,8 +253,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'normal user should be able to access' do
@@ -245,8 +277,8 @@ end
 RSpec.describe 'Artists', type: :request do
   before do
     @artist = FactoryBot.create(:artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'normal user should not be able to access' do

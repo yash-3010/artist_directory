@@ -10,7 +10,7 @@
 
 Category.destroy_all
 
-@user = User.new(email: 'admin@user.com', password: 'Admin@123', password_confirmation: 'Admin@123', role: 1)
+@user = User.new(email: 'admin@user.com', password: 'Admin@123', password_confirmation: 'Admin@123', role: 'admin', username: 'admin')
 @user.save!
 
 @category = Category.create([
@@ -27,7 +27,12 @@ Category.destroy_all
                       work: 'Painter',
                       email: 'Jonsnow@gmail.com',
                       category_id: 3,
-                      links: 'https://www.youtube.com/watch?v=DP_NqOOeoao')
+                      links_attributes: [
+                        {
+                          'url' => 'https://www.youtube.com/watch?v=DP_NqOOeoao',
+                          '_destroy' => 'false'
+                        }
+                      ])
 @artist1.image.attach(io: File.open('app/assets/images/a2.jpg'), filename: 'a2.jpg')
 @artist1.pictures.attach(io: File.open('app/assets/images/p1.jpg'), filename: 'p1.jpg')
 @artist1.pictures.attach(io: File.open('app/assets/images/p2.jpg'), filename: 'p2.jpg')
@@ -46,7 +51,12 @@ Category.destroy_all
                       work: 'Dancer',
                       email: 'aryastark@gmail.com',
                       category_id: 2,
-                      links: 'https://www.youtube.com/watch?v=vCI2kmFJD_w')
+                      links_attributes: [
+                        {
+                          'url' => 'https://www.youtube.com/watch?v=3s4okfFYqy4',
+                          '_destroy' => 'false'
+                        }
+                      ])
 @artist2.image.attach(io: File.open('app/assets/images/a1.jpg'), filename: 'a1.jpg')
 @artist2.pictures.attach(io: File.open('app/assets/images/d1.jpg'), filename: 'd1.jpg')
 @artist2.pictures.attach(io: File.open('app/assets/images/d2.jpg'), filename: 'd2.jpg')
@@ -65,7 +75,12 @@ Category.destroy_all
                       work: 'Wildlife Photographer',
                       email: 'tyrionlannister@gmail.com',
                       category_id: 4,
-                      links: 'https://www.youtube.com/watch?v=yxatrXPTd1k')
+                      links_attributes: [
+                        {
+                          'url' => 'https://www.youtube.com/watch?v=yxatrXPTd1k',
+                          '_destroy' => 'false'
+                        }
+                      ])
 @artist3.image.attach(io: File.open('app/assets/images/a3.jpg'), filename: 'a3.jpg')
 @artist3.pictures.attach(io: File.open('app/assets/images/c1.jpg'), filename: 'c1.jpg')
 @artist3.pictures.attach(io: File.open('app/assets/images/c2.jpg'), filename: 'c2.jpg')

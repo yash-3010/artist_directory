@@ -16,9 +16,35 @@
       <%= render "lightgallery" %>
       <h3 class="display-5 mt-5">From the Artist</h3>
       <p class="lead">Hear it from the artists, listen to the their personal insights and reflections.</p>
-      <p>
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              <p class="d-block w-100">
+              <%= get_video_iframe(artist.links.first.url, '100%', '400px') %>
+              </p>
+            </div>
+          <% artist.links.each  do |link| %>
+            <% if link.url != artist.links.first.url %>
+              <div class="carousel-item">
+                <p class="d-block w-100">
+                <%= get_video_iframe(link.url, '100%', '400px') %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <%# <p>
         <%= get_video_iframe(artist.links.first.url, '100%', '400px') %>
-      </p>
+      <%# </p>  %>
     </div>
     <div class="sec-bg rounded w-25 px-5 py-4">
       <p class="text-center"><%= image_tag(artist.image, class:"profile rounded-circle") %></p>

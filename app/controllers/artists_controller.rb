@@ -30,13 +30,11 @@ class ArtistsController < ApplicationController
     end
 
     # then sort by name if rating_sort is 0
-    if(@rating_sort.zero? && !@rating_filter.zero?)
-      @artists = @artists.sort_by(&:name)
-    end
+    @artists = @artists.sort_by(&:name) if @rating_sort.zero? && !@rating_filter.zero?
 
-    if @rating_sort.zero? && @rating_filter.zero?
-      @artists = @q.result(distinct: true).order(:name)
-    end
+    return unless @rating_sort.zero? && @rating_filter.zero?
+
+    @artists = @q.result(distinct: true).order(:name)
   end
 
   # def search
@@ -59,8 +57,7 @@ class ArtistsController < ApplicationController
   end
 
   # GET /artists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /artists or /artists.json
   def create
@@ -123,7 +120,7 @@ class ArtistsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def artist_params
     params.require(:artist).permit(:name, :dob, :location, :work, :email, :category_id, :content, :image,
-                                   pictures: [], links_attributes: [:id, :url, :_destroy])
+                                   pictures: [], links_attributes: %i[id url _destroy])
   end
 
   def set_categories

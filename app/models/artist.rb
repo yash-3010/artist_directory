@@ -15,6 +15,8 @@ class Artist < ApplicationRecord
   validate :image_type
   validate :pictures_type
   validate :validate_youtube_urls
+  serialize :links, JSON
+  before_save :downcase_name
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[category_id created_at dob email id links location name updated_at work]
@@ -42,19 +44,20 @@ class Artist < ApplicationRecord
     end
   end
 
+  def downcase_name
+    self.name = name.downcase
+  end
+
   def validate_youtube_urls
     return if links.blank?
 
     links.each do |url|
-      unless valid_youtube_url?(url.url)
-        errors.add(:links, "#{url.url} is not a valid YouTube video URL")
-      end
+      errors.add(:links, "#{url.url} is not a valid YouTube video URL") unless valid_youtube_url?(url.url)
     end
   end
 
   def valid_youtube_url?(url)
-    youtube_url_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)\z/
+    youtube_url_regex = %r{\A(?:https?://)?(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)\z}
     !!url.match(youtube_url_regex)
   end
-
 end

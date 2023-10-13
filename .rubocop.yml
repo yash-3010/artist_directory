@@ -13,3 +13,15 @@ AllCops:
     - 'bin/{rails,rake,bundle}'
     - '**/rails_helper.rb'
     - '**/spec_helper.rb'
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 12

@@ -5,7 +5,7 @@
 
   <div class="col-md-6 required">
     <%= form.label :name, class:"form-label" %>
-    <%= form.text_field :name, class:"form-control #{ !artist.errors.where(:name).empty? && "border border-danger"}" %>
+    <%= form.text_field :name, class:"form-control #{ !artist.errors.where(:name).empty? && "border border-danger"}", placeholder:"Enter your name" %>
     <div class="text-danger fst-italic">
       <% if !artist.errors.where(:name).empty? %>
         * <%= artist.errors.where(:name).last.full_message %>
@@ -15,7 +15,7 @@
 
   <div class="col-md-6 required">
     <%= form.label :email, class:"form-label" %>
-    <%= form.email_field :email, class:"form-control #{ !artist.errors.where(:email).empty? && "border border-danger"}" %>
+    <%= form.email_field :email, class:"form-control #{ !artist.errors.where(:email).empty? && "border border-danger"}", placeholder:"example@domain.com" %>
     <div class="text-danger fst-italic">
       <% if !artist.errors.where(:email).empty? %>
         * <%= artist.errors.where(:email).last.full_message %>
@@ -58,13 +58,13 @@
 
   <div>
     <%= form.label :location, class:"form-label" %>
-    <%= form.text_field :location, class:"form-control" %>
+    <%= form.text_field :location, class:"form-control", placeholder:"Enter your location" %>
   </div>
 
   <% if false %>
   <div class="required">
     <%= form.label :"YouTube Links", class:"form-label" %>
-    <%= form.text_field :links, class:"form-control #{ !artist.errors.where(:links).empty? && "border border-danger"}" %>
+    <%= form.text_field :links, class:"form-control #{ !artist.errors.where(:links).empty? && "border border-danger"}", placeholder:"Youtube video url" %>
     <div class="text-danger fst-italic">
       <% if !artist.errors.where(:links).empty? %>
         * <%= artist.errors.where(:links).last.full_message %>
@@ -100,7 +100,7 @@
 
   <div class="col-md-4">
     <%= form.label :work, class:"form-label" %>
-    <%= form.text_field :work, class:"form-control" %>
+    <%= form.text_field :work, class:"form-control", placeholder:"Field of work" %>
   </div>
 
   <div class="col-md-4">

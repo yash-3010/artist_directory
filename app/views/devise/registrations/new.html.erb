@@ -7,13 +7,24 @@
 
     <div class="form-floating mb-3 required">
       <div class="text-danger fst-italic">
+        <% if !resource.errors.where(:username).empty? %>
+          * <%= resource.errors.where(:username).last.full_message %>
+        <% end %>
+      </div>
+      <%= f.text_field :username, autofocus: true, class:"form-control #{ !resource.errors.where(:username).empty? && "border border-danger"}" , placeholder:"Enter your name" %>
+      <%= f.label :username, class:"form-label" %>
+    </div>
+
+    <div class="form-floating mb-3 required">
+      <div class="text-danger fst-italic">
         <% if !resource.errors.where(:email).empty? %>
           * <%= resource.errors.where(:email).last.full_message %>
         <% end %>
       </div>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
+      <%= f.email_field :email, autocomplete: "email" , class:"form-control #{ !resource.errors.where(:email).empty? && "border border-danger"}" , placeholder:"email" %>
       <%= f.label :email, class:"form-label" %>
     </div>
+
     <div class="form-floating mb-3 required">
       <div class="text-danger fst-italic">
         <% if !resource.errors.where(:password).empty? %>

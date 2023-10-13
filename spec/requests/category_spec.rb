@@ -6,8 +6,8 @@ require 'rails_helper'
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'POST /categories' do
@@ -29,8 +29,8 @@ end
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'GET /categories' do
@@ -52,8 +52,8 @@ end
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'GET /categories' do
@@ -76,8 +76,8 @@ end
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'Non-admin user' do
@@ -104,8 +104,8 @@ end
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'PUT /categories' do
@@ -127,8 +127,8 @@ end
 RSpec.describe 'Categories', type: :request do
   before do
     @category = Category.create(name: 'Sports')
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'DELETE /categories' do

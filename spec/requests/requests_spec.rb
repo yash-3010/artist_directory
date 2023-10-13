@@ -5,8 +5,8 @@ require 'rails_helper'
 
 RSpec.describe 'Requests', type: :request do
   before do
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'only admin can access index page of requests' do

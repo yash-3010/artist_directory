@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
+  validates :username, presence: true
   # Strong password validation format
   validates :password,
             format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}\z/,
@@ -28,5 +29,4 @@ class User < ApplicationRecord
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
-
 end

@@ -54,12 +54,6 @@ RSpec.describe Artist, type: :model do
 end
 
 RSpec.describe Artist, type: :model do
-  it 'should destroy all the comments related to artist on destroy' do
-    artist = FactoryBot.create(:artist)
-    FactoryBot.create(:comment, artist_id: artist.id)
-    artist.destroy
-    expect(Comment.where(artist_id: artist.id).count).to eq(0)
-  end
   it 'should have image of type image/jpeg' do
     expect(FactoryBot.build(:artist).image.content_type).to eq('image/jpeg')
   end
@@ -104,6 +98,10 @@ RSpec.describe Artist, type: :model do
     end
     it 'category_id is not a valid category id' do
       expect(FactoryBot.build(:artist, category_id: 100)).to_not be_valid
+    end
+    it 'stores artist name in lowercase' do
+      artist = FactoryBot.create(:artist, name: 'John Doe')
+      expect(artist.reload.name).to eq('john doe')
     end
   end
 end

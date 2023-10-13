@@ -7,8 +7,8 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
   before do
     @artist = FactoryBot.create(:artist)
     @comment = FactoryBot.create(:comment, artist: @artist)
-    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin')
-    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user')
+    @admin_user = User.create(email: 'admin@user.com', password: 'King@123', role: 'admin', username: 'admin')
+    @normal_user = User.create(email: 'normal@user.com', password: 'King@123', role: 'user', username: 'normal')
   end
 
   context 'when user is logged in' do
