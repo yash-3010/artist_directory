@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-13T03:08:42+05:30">2023-10-13T03:08:42+05:30</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-17T23:03:00+05:30">2023-10-17T23:03:00+05:30</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="yellow">
-  87.63%
+  87.37%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         7.78
+         7.88
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>291</b> relevant lines,
-    <span class="green"><b>255</b> lines covered</span> and
+    <b>285</b> relevant lines,
+    <span class="green"><b>249</b> lines covered</span> and
     <span class="red"><b>36</b> lines missed. </span>
     (<span class="yellow">
-  87.63%
+  87.37%
 </span>
 )
   </div>
@@ -106,11 +106,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#73f880b993adc710900018e86c01ab9e0d0be087" class="src_link" title="app/controllers/artists_controller.rb">app/controllers/artists_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">129</td>
-            <td class="cell--number">62</td>
-            <td class="cell--number">62</td>
+            <td class="cell--number">125</td>
+            <td class="cell--number">56</td>
+            <td class="cell--number">56</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2.66</td>
+            <td class="cell--number">2.63</td>
             
           </tr>
         
@@ -390,14 +390,14 @@
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
       <span class="yellow">
-  87.95%
+  87.5%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.27
+         2.24
        </span>
     </span> hits/line
     )
@@ -410,11 +410,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>166</b> relevant lines,
-    <span class="green"><b>146</b> lines covered</span> and
+    <b>160</b> relevant lines,
+    <span class="green"><b>140</b> lines covered</span> and
     <span class="red"><b>20</b> lines missed. </span>
     (<span class="yellow">
-  87.95%
+  87.5%
 </span>
 )
   </div>
@@ -451,11 +451,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#73f880b993adc710900018e86c01ab9e0d0be087" class="src_link" title="app/controllers/artists_controller.rb">app/controllers/artists_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">129</td>
-            <td class="cell--number">62</td>
-            <td class="cell--number">62</td>
+            <td class="cell--number">125</td>
+            <td class="cell--number">56</td>
+            <td class="cell--number">56</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2.66</td>
+            <td class="cell--number">2.63</td>
             
           </tr>
         
@@ -1502,8 +1502,8 @@
     
 
     <div class="t-line-summary">
-      <b>62</b> relevant lines.
-      <span class="green"><b>62</b> lines covered</span> and
+      <b>56</b> relevant lines.
+      <span class="green"><b>56</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1669,13 +1669,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="7" data-linenumber="15">
-            <span class="hits">7</span>
+          <li class="never" data-hits="" data-linenumber="15">
+            
             
 
             
 
-            <code class="ruby">    @artists = @q.result(distinct: true).joins(:comments).group(&#39;artists.id&#39;)</code>
+            <code class="ruby">    # Retrieve all artists</code>
           </li>
         </div>
       
@@ -1686,29 +1686,29 @@
 
             
 
-            <code class="ruby">    @artists = @artists.select do |artist|</code>
+            <code class="ruby">    @artists = @q.result(distinct: true).joins(&#39;LEFT JOIN comments ON comments.artist_id</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="17">
-            <span class="hits">6</span>
+          <li class="never" data-hits="" data-linenumber="17">
+            
             
 
             
 
-            <code class="ruby">      avg_rating = artist.comments.where(approval: true).average(:rating)</code>
+            <code class="ruby">     = artists.id AND comments.approval = true&#39;).group(&#39;artists.id&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="18">
-            <span class="hits">6</span>
+          <li class="never" data-hits="" data-linenumber="18">
+            
             
 
             
 
-            <code class="ruby">      avg_rating &amp;&amp; avg_rating &gt; @rating_filter</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1719,56 +1719,23 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    # Filter artists based on rating filter</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="20">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="7" data-linenumber="21">
+          <li class="covered" data-hits="7" data-linenumber="20">
             <span class="hits">7</span>
             
 
             
 
-            <code class="ruby">    @artists.sort! do |a, b|</code>
+            <code class="ruby">    @artists = @artists.having(&#39;AVG(comments.rating) &gt; ?&#39;, @rating_filter) if @rating_filter.positive?</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="22">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      avg_rating_a = a.comments.where(approval: true).average(:rating)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="23">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      avg_rating_b = b.comments.where(approval: true).average(:rating)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="24">
+          <li class="never" data-hits="" data-linenumber="21">
             
             
 
@@ -1779,24 +1746,57 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="25">
+          <li class="never" data-hits="" data-linenumber="22">
+            
+            
+
+            
+
+            <code class="ruby">    # Sort the artists based on rating_sort</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="7" data-linenumber="23">
+            <span class="hits">7</span>
+            
+
+            
+
+            <code class="ruby">    if @rating_sort != 0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="24">
             <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">      if @rating_sort == 1</code>
+            <code class="ruby">      @artists = @artists.order(&quot;AVG(comments.rating) #{@rating_sort == 1 ? &#39;ASC&#39; : &#39;DESC&#39;}&quot;).references(:comments)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="26">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="25">
+            
             
 
             
 
-            <code class="ruby">        avg_rating_a &lt;=&gt; avg_rating_b</code>
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="26">
+            
+            
+
+            
+
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1807,18 +1807,18 @@
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby">    # Then sort by name if rating_sort is 0</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="28">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="7" data-linenumber="28">
+            <span class="hits">7</span>
             
 
             
 
-            <code class="ruby">        avg_rating_b &lt;=&gt; avg_rating_a</code>
+            <code class="ruby">    @artists = @artists.sort_by(&amp;:name) if @rating_sort.zero? &amp;&amp; @rating_filter.zero?</code>
           </li>
         </div>
       
@@ -1829,18 +1829,18 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
-            
-            
-
+          <li class="covered" data-hits="7" data-linenumber="30">
+            <span class="hits">7</span>
             
 
-            <code class="ruby">    end</code>
+            
+
+            <code class="ruby">    return unless @rating_sort.zero? &amp;&amp; @rating_filter.zero?</code>
           </li>
         </div>
       
@@ -1856,24 +1856,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="32">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">    # then sort by name if rating_sort is 0</code>
+            
+
+            <code class="ruby">    @artists = @q.result(distinct: true).order(:name)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="7" data-linenumber="33">
-            <span class="hits">7</span>
+          <li class="never" data-hits="" data-linenumber="33">
+            
             
 
             
 
-            <code class="ruby">    @artists = @artists.sort_by(&amp;:name) if @rating_sort.zero? &amp;&amp; !@rating_filter.zero?</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1889,13 +1889,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="7" data-linenumber="35">
-            <span class="hits">7</span>
+          <li class="never" data-hits="" data-linenumber="35">
+            
             
 
             
 
-            <code class="ruby">    return unless @rating_sort.zero? &amp;&amp; @rating_filter.zero?</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1906,56 +1906,12 @@
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="4" data-linenumber="37">
-            <span class="hits">4</span>
-            
-
-            
-
-            <code class="ruby">    @artists = @q.result(distinct: true).order(:name)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="38">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="39">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="40">
-            
-            
-
-            
-
             <code class="ruby">  # def search</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="41">
+          <li class="never" data-hits="" data-linenumber="37">
             
             
 
@@ -1966,7 +1922,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="38">
             
             
 
@@ -1977,7 +1933,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="43">
+          <li class="never" data-hits="" data-linenumber="39">
             
             
 
@@ -1988,7 +1944,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="44">
+          <li class="never" data-hits="" data-linenumber="40">
             
             
 
@@ -1999,7 +1955,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="45">
+          <li class="never" data-hits="" data-linenumber="41">
             
             
 
@@ -2010,7 +1966,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
+          <li class="never" data-hits="" data-linenumber="42">
             
             
 
@@ -2021,7 +1977,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="47">
+          <li class="never" data-hits="" data-linenumber="43">
             
             
 
@@ -2032,7 +1988,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="48">
+          <li class="never" data-hits="" data-linenumber="44">
             
             
 
@@ -2043,7 +1999,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="49">
+          <li class="covered" data-hits="1" data-linenumber="45">
             <span class="hits">1</span>
             
 
@@ -2054,7 +2010,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="50">
+          <li class="covered" data-hits="2" data-linenumber="46">
             <span class="hits">2</span>
             
 
@@ -2065,7 +2021,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="51">
+          <li class="never" data-hits="" data-linenumber="47">
             
             
 
@@ -2076,7 +2032,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
+          <li class="never" data-hits="" data-linenumber="48">
             
             
 
@@ -2087,7 +2043,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
+          <li class="never" data-hits="" data-linenumber="49">
             
             
 
@@ -2098,7 +2054,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="54">
+          <li class="covered" data-hits="1" data-linenumber="50">
             <span class="hits">1</span>
             
 
@@ -2109,7 +2065,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="55">
+          <li class="covered" data-hits="1" data-linenumber="51">
             <span class="hits">1</span>
             
 
@@ -2120,7 +2076,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="56">
+          <li class="covered" data-hits="1" data-linenumber="52">
             <span class="hits">1</span>
             
 
@@ -2131,7 +2087,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="57">
+          <li class="never" data-hits="" data-linenumber="53">
             
             
 
@@ -2142,7 +2098,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="58">
+          <li class="never" data-hits="" data-linenumber="54">
             
             
 
@@ -2153,7 +2109,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="59">
+          <li class="never" data-hits="" data-linenumber="55">
             
             
 
@@ -2164,7 +2120,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="60">
+          <li class="covered" data-hits="1" data-linenumber="56">
             <span class="hits">1</span>
             
 
@@ -2175,7 +2131,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="61">
+          <li class="never" data-hits="" data-linenumber="57">
             
             
 
@@ -2186,7 +2142,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="62">
+          <li class="never" data-hits="" data-linenumber="58">
             
             
 
@@ -2197,7 +2153,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="63">
+          <li class="covered" data-hits="1" data-linenumber="59">
             <span class="hits">1</span>
             
 
@@ -2208,7 +2164,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="64">
+          <li class="covered" data-hits="2" data-linenumber="60">
             <span class="hits">2</span>
             
 
@@ -2219,7 +2175,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="65">
+          <li class="covered" data-hits="2" data-linenumber="61">
             <span class="hits">2</span>
             
 
@@ -2230,7 +2186,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="66">
+          <li class="covered" data-hits="2" data-linenumber="62">
             <span class="hits">2</span>
             
 
@@ -2241,7 +2197,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="67">
+          <li class="covered" data-hits="2" data-linenumber="63">
             <span class="hits">2</span>
             
 
@@ -2252,7 +2208,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="68">
+          <li class="covered" data-hits="1" data-linenumber="64">
             <span class="hits">1</span>
             
 
@@ -2263,7 +2219,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="65">
             
             
 
@@ -2274,7 +2230,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="70">
+          <li class="covered" data-hits="2" data-linenumber="66">
             <span class="hits">2</span>
             
 
@@ -2285,7 +2241,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="71">
+          <li class="covered" data-hits="1" data-linenumber="67">
             <span class="hits">1</span>
             
 
@@ -2296,7 +2252,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="72">
+          <li class="never" data-hits="" data-linenumber="68">
             
             
 
@@ -2307,7 +2263,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="73">
+          <li class="never" data-hits="" data-linenumber="69">
             
             
 
@@ -2318,7 +2274,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="70">
             
             
 
@@ -2329,7 +2285,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="75">
+          <li class="never" data-hits="" data-linenumber="71">
             
             
 
@@ -2340,7 +2296,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="76">
+          <li class="never" data-hits="" data-linenumber="72">
             
             
 
@@ -2351,7 +2307,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="77">
+          <li class="covered" data-hits="1" data-linenumber="73">
             <span class="hits">1</span>
             
 
@@ -2362,7 +2318,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="78">
+          <li class="covered" data-hits="2" data-linenumber="74">
             <span class="hits">2</span>
             
 
@@ -2373,7 +2329,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="79">
+          <li class="covered" data-hits="2" data-linenumber="75">
             <span class="hits">2</span>
             
 
@@ -2384,7 +2340,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="80">
+          <li class="covered" data-hits="2" data-linenumber="76">
             <span class="hits">2</span>
             
 
@@ -2395,7 +2351,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="81">
+          <li class="covered" data-hits="1" data-linenumber="77">
             <span class="hits">1</span>
             
 
@@ -2406,7 +2362,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="82">
+          <li class="never" data-hits="" data-linenumber="78">
             
             
 
@@ -2417,7 +2373,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="83">
+          <li class="covered" data-hits="2" data-linenumber="79">
             <span class="hits">2</span>
             
 
@@ -2428,7 +2384,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="84">
+          <li class="covered" data-hits="1" data-linenumber="80">
             <span class="hits">1</span>
             
 
@@ -2439,7 +2395,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="85">
+          <li class="never" data-hits="" data-linenumber="81">
             
             
 
@@ -2450,7 +2406,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="86">
+          <li class="never" data-hits="" data-linenumber="82">
             
             
 
@@ -2461,13 +2417,57 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="87">
+          <li class="never" data-hits="" data-linenumber="83">
             
             
 
             
 
             <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="84">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="85">
+            
+            
+
+            
+
+            <code class="ruby">  # DELETE /artists/1 or /artists/1.json</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="86">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def destroy</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="87">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    @artist.destroy</code>
           </li>
         </div>
       
@@ -2483,51 +2483,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
-            
-            
-
-            
-
-            <code class="ruby">  # DELETE /artists/1 or /artists/1.json</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="90">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def destroy</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="91">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    @artist.destroy</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="92">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="93">
+          <li class="covered" data-hits="1" data-linenumber="89">
             <span class="hits">1</span>
             
 
@@ -2538,7 +2494,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="94">
+          <li class="covered" data-hits="2" data-linenumber="90">
             <span class="hits">2</span>
             
 
@@ -2549,7 +2505,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="95">
+          <li class="covered" data-hits="1" data-linenumber="91">
             <span class="hits">1</span>
             
 
@@ -2560,13 +2516,57 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
+          <li class="never" data-hits="" data-linenumber="92">
             
             
 
             
 
             <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="93">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="94">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="95">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def mails</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="96">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    render &#39;artists/mails&#39;</code>
           </li>
         </div>
       
@@ -2599,7 +2599,7 @@
 
             
 
-            <code class="ruby">  def mails</code>
+            <code class="ruby">  def sendmail</code>
           </li>
         </div>
       
@@ -2610,18 +2610,18 @@
 
             
 
-            <code class="ruby">    render &#39;artists/mails&#39;</code>
+            <code class="ruby">    @artist = Artist.find(params[:id])</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="101">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="101">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    @body = params[:content]</code>
           </li>
         </div>
       
@@ -2643,7 +2643,7 @@
 
             
 
-            <code class="ruby">  def sendmail</code>
+            <code class="ruby">    respond_to do |format|</code>
           </li>
         </div>
       
@@ -2654,56 +2654,12 @@
 
             
 
-            <code class="ruby">    @artist = Artist.find(params[:id])</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="105">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    @body = params[:content]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="106">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="107">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    respond_to do |format|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="108">
-            <span class="hits">1</span>
-            
-
-            
-
             <code class="ruby">      ArtistMailer.with(reciver: @artist.email, sender: current_user.email, body: @body).mail_artist.deliver_now</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="109">
+          <li class="covered" data-hits="2" data-linenumber="105">
             <span class="hits">2</span>
             
 
@@ -2714,7 +2670,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="110">
+          <li class="never" data-hits="" data-linenumber="106">
             
             
 
@@ -2725,7 +2681,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="111">
+          <li class="never" data-hits="" data-linenumber="107">
             
             
 
@@ -2736,7 +2692,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="112">
+          <li class="never" data-hits="" data-linenumber="108">
             
             
 
@@ -2747,7 +2703,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="113">
+          <li class="covered" data-hits="1" data-linenumber="109">
             <span class="hits">1</span>
             
 
@@ -2758,7 +2714,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="114">
+          <li class="never" data-hits="" data-linenumber="110">
             
             
 
@@ -2769,7 +2725,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="115">
+          <li class="never" data-hits="" data-linenumber="111">
             
             
 
@@ -2780,7 +2736,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="116">
+          <li class="covered" data-hits="1" data-linenumber="112">
             <span class="hits">1</span>
             
 
@@ -2791,7 +2747,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="9" data-linenumber="117">
+          <li class="covered" data-hits="9" data-linenumber="113">
             <span class="hits">9</span>
             
 
@@ -2802,7 +2758,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="118">
+          <li class="never" data-hits="" data-linenumber="114">
             
             
 
@@ -2813,7 +2769,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="119">
+          <li class="never" data-hits="" data-linenumber="115">
             
             
 
@@ -2824,7 +2780,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="120">
+          <li class="never" data-hits="" data-linenumber="116">
             
             
 
@@ -2835,7 +2791,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="121">
+          <li class="covered" data-hits="1" data-linenumber="117">
             <span class="hits">1</span>
             
 
@@ -2846,7 +2802,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="122">
+          <li class="covered" data-hits="4" data-linenumber="118">
             <span class="hits">4</span>
             
 
@@ -2857,13 +2813,57 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="123">
+          <li class="never" data-hits="" data-linenumber="119">
             
             
 
             
 
             <code class="ruby">                                   pictures: [], links_attributes: %i[id url _destroy])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="120">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="121">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="122">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def set_categories</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="23" data-linenumber="123">
+            <span class="hits">23</span>
+            
+
+            
+
+            <code class="ruby">    @categories = Category.all.order(:name)</code>
           </li>
         </div>
       
@@ -2880,50 +2880,6 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="125">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def set_categories</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="23" data-linenumber="127">
-            <span class="hits">23</span>
-            
-
-            
-
-            <code class="ruby">    @categories = Category.all.order(:name)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="128">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="129">
             
             
 

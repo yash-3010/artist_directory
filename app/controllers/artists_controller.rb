@@ -12,30 +12,26 @@ class ArtistsController < ApplicationController
     @rating_filter = params[:rating_filter].to_i
     @rating_sort = params[:rating_sort].to_i # rating_sort 0 means no sort, 1 means ascending, 2 means descending
 
-    @artists = @q.result(distinct: true).joins(:comments).group('artists.id')
-    @artists = @artists.select do |artist|
-      avg_rating = artist.comments.where(approval: true).average(:rating)
-      avg_rating && avg_rating > @rating_filter
+    # Retrieve all artists
+    @artists = @q.result(distinct: true).joins('LEFT JOIN comments ON comments.artist_id
+     = artists.id AND comments.approval = true').group('artists.id')
+
+    # Filter artists based on rating filter
+    @artists = @artists.having('AVG(comments.rating) > ?', @rating_filter) if @rating_filter.positive?
+
+    # Sort the artists based on rating_sort
+    if @rating_sort != 0
+      @artists = @artists.order("AVG(comments.rating) #{@rating_sort == 1 ? 'ASC' : 'DESC'}").references(:comments)
     end
 
-    @artists.sort! do |a, b|
-      avg_rating_a = a.comments.where(approval: true).average(:rating)
-      avg_rating_b = b.comments.where(approval: true).average(:rating)
-
-      if @rating_sort == 1
-        avg_rating_a <=> avg_rating_b
-      else
-        avg_rating_b <=> avg_rating_a
-      end
-    end
-
-    # then sort by name if rating_sort is 0
-    @artists = @artists.sort_by(&:name) if @rating_sort.zero? && !@rating_filter.zero?
+    # Then sort by name if rating_sort is 0
+    @artists = @artists.sort_by(&:name) if @rating_sort.zero? && @rating_filter.zero?
 
     return unless @rating_sort.zero? && @rating_filter.zero?
 
     @artists = @q.result(distinct: true).order(:name)
   end
+
 
   # def search
   #   @rating_filter = params[:rating_filter].to_i
